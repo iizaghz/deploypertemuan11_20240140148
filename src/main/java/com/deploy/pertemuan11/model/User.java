@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
     @Id
-    private  String Id;
+    private  String id;
     private  String username;
     private  String password;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Profile {
     @Id
-    private  String Id;
+    private  String id;
     private String nama;
     private  String alamat;
     @OneToOne
