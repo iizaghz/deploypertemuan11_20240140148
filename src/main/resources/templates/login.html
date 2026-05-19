@@ -2,33 +2,39 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<form th:action="@{/login}" method="post">
+<div class="container">
 
-    <input type="text"
-           name="username"
-           placeholder="Username">
+    <h1>Login</h1>
 
-    <input type="password"
-           name="password"
-           placeholder="Password">
+    <form th:action="@{/login}" method="post">
 
-    <button type="submit">
-        Login
-    </button>
+        <input type="text"
+               name="username"
+               placeholder="Username">
 
-</form>
+        <input type="password"
+               name="password"
+               placeholder="Password">
 
-<br>
+        <button type="submit">
+            Login
+        </button>
 
-<p>Belum punya akun?</p>
+    </form>
 
-<a th:href="@{/register}">
-    Register disini
-</a>
+    <p>Belum punya akun?</p>
+
+    <a th:href="@{/register}">
+        Register disini
+    </a>
+
+</div>
 
 </body>
 </html>

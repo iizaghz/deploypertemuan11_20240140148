@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Home</h1>
+<div class="container">
 
-<p>
-    Username:
-    <span th:text="${user.username}"></span>
-</p>
+    <h1>Welcome</h1>
 
-<p>
-    Nama:
-    <span th:text="${profile.nama}"></span>
-</p>
+    <div class="home-info">
 
-<p>
-    Alamat:
-    <span th:text="${profile.alamat}"></span>
-</p>
+        <div class="info-box">
+            <div class="label">Username</div>
+            <div class="value" th:text="${user.username}"></div>
+        </div>
 
-<a th:href="@{/logout}">
-    Logout
-</a>
+        <div class="info-box">
+            <div class="label">Nama</div>
+            <div class="value" th:text="${profile.nama}"></div>
+        </div>
+
+        <div class="info-box">
+            <div class="label">Alamat</div>
+            <div class="value" th:text="${profile.alamat}"></div>
+        </div>
+
+    </div>
+
+    <a class="logout-btn" th:href="@{/logout}">
+        Logout
+    </a>
+
+</div>
 
 </body>
 </html>

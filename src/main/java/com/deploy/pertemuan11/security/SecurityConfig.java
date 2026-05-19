@@ -1,6 +1,5 @@
 package com.deploy.pertemuan11.security;
 
-
 import com.deploy.pertemuan11.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,15 +17,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    public UserDetailsService userDetailsService (UserRepository userRepository) {
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
+
         return username -> {
-            com.deploy.pertemuan11.model.User user  = userRepository.findByUsername(username).
-                    orElseThrow(() -> new UsernameNotFoundException("User tidak ditemukan"));
+
+            com.deploy.pertemuan11.model.User user =
+                    userRepository.findByUsername(username)
+                            .orElseThrow(() ->
+                                    new UsernameNotFoundException("User tidak ditemukan"));
+
             return User
                     .withUsername(user.getUsername())
                     .password(user.getPassword())
@@ -34,28 +40,35 @@ public class SecurityConfig {
                     .build();
         };
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
-            throws Exception{
+            throws Exception {
+
         http
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/register",
                                 "/login",
+                                "/register",
                                 "/css/**"
                         ).permitAll()
+
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home",true)
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
+
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login")
+                        .permitAll()
                 );
+
         return http.build();
     }
 }
