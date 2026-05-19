@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
+
+<h1>Home</h1>
+
+<p>
+    Username:
+    <span th:text="${user.username}"></span>
+</p>
+
+<p>
+    Nama:
+    <span th:text="${profile.nama}"></span>
+</p>
+
+<p>
+    Alamat:
+    <span th:text="${profile.alamat}"></span>
+</p>
+
+<a th:href="@{/logout}">
+    Logout
+</a>
 
 </body>
 </html>
